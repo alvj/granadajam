@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour {
     [SerializeField] float speed;
 
+    SpriteRenderer sr;
     Rigidbody2D rb;
     float xAxis;
     float yAxis;
@@ -12,13 +13,23 @@ public class PlayerMovement : MonoBehaviour {
 
     void Awake()
     {
-        rb = this.GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
         xAxis = Input.GetAxisRaw("Horizontal");
         yAxis = Input.GetAxisRaw("Vertical");
+
+        if(xAxis < 0.01f)
+        {
+            sr.flipX = true;
+        }
+        else if (xAxis > 0.01f)
+        {
+            sr.flipX = false;
+        }
     }
 
     void FixedUpdate()
