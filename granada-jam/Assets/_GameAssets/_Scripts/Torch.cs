@@ -16,6 +16,11 @@ public class Torch : MonoBehaviour {
     [SerializeField] Camera cam;
     Light lightComponent;
 
+    public float GetLightAngle()
+    {
+        return lightComponent.spotAngle;
+    }
+
     private void Awake()
     {
         lightComponent = GetComponent<Light>();
